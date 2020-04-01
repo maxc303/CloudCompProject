@@ -1,0 +1,12 @@
+/.idea/*
+/venv/*
+/app/__pycache__/*
+.DS_Store
+/app/static/images/detected_images/*
+/app/static/images/raw _images/*
+/app/static/images/thumbnails/*
+/app/static/images/od_thumbnails/*
+*.weights
+*.jpg
+*.jpeg
+/my-photos/
