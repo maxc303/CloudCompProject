@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f70bffe1-667b-48f3-bf0e-bef81efbbd8a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/spider.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tools/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tools/web_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/tools/web_spider.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +37,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/tools" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -45,20 +48,21 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\53148\Desktop\CloudCompProject\app\tools" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\templates" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\js" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\css" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\53148\Desktop\CloudCompProject\app\tools" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\static" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\static\css" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\templates" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\js" />
-      <recent name="C:\Users\53148\Desktop\CloudCompProject\app\css" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.web_spider">
+  <component name="RunManager" selected="Python.web_spider (1)">
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CloudCompProject-master" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,6 +77,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="web_spider (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CloudCompProject-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/tools/web_spider.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,6 +131,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.web_spider (1)" />
         <item itemvalue="Python.web_spider" />
         <item itemvalue="Python.run" />
       </list>
@@ -134,7 +161,8 @@
       <updated>1585418067926</updated>
       <workItem from="1585418071067" duration="191000" />
       <workItem from="1585418841029" duration="5687000" />
-      <workItem from="1585762925826" duration="3077000" />
+      <workItem from="1585762925826" duration="5810000" />
+      <workItem from="1585772034773" duration="7576000" />
     </task>
     <servers />
   </component>
@@ -142,40 +170,72 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585424125562">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585768620808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585424125562" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585768620808" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1585420246261">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585420246261" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1585767976013">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1585782056728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585767976013" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1585767976013">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585782056728" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1585782056728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585767976013" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1585767976013">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585782056728" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1585782056728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585767976013" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1585767976013">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585782056728" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1585782056728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585767976013" />
-    <state x="461" y="162" width="1302" height="715" key="SettingsEditor" timestamp="1585768486891">
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585782056728" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1585778576024">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" width="1302" height="715" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585768486891" />
-    <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585418072014">
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585778576024" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1585778576024">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="640" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585418072014" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585778576024" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1585778576024">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585778576024" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1585778576024">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585778576024" />
+    <state x="461" y="162" width="1302" height="715" key="SettingsEditor" timestamp="1585777277761">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" width="1302" height="715" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585777277761" />
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585772054122">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585772054122" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1585778672771">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585778672771" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/tools/web_spider.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CloudCompProject$web_spider__1_.coverage" NAME="web_spider (1) Coverage Results" MODIFIED="1585782056723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/tools" />
     <SUITE FILE_PATH="coverage/CloudCompProject$run.coverage" NAME="run Coverage Results" MODIFIED="1585762977077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CloudCompProject$web_spider.coverage" NAME="web_spider Coverage Results" MODIFIED="1585767976006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
   </component>
