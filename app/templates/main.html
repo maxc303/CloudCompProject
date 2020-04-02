@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bulma cards</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <!-- Bulma Version 0.8.x-->
+    <link rel='stylesheet' href='https://unpkg.com/bulma@0.8.0/css/bulma.min.css'>
+    <link rel="stylesheet" href="../css/kanban.css">
+    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar has-shadow">
+    <div class="container">
+        <div class="navbar-brand"><a class="navbar-item" href="../"><img src="http://bulma.io/images/bulma-logo.png"
+                                                                         alt="Bulma: a modern CSS framework based on Flexbox"/></a>
+            <div class="navbar-burger burger" data-target="navMenu"><span></span><span></span><span></span></div>
+        </div>
+        <div class="navbar-menu" id="navMenu">
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link">Account</a>
+                    <div class="navbar-dropdown"><a class="navbar-item">Dashboard</a><a
+                            class="navbar-item">Profile</a><a class="navbar-item">Settings</a>
+                        <hr class="navbar-divider"/>
+                        <div class="navbar-item">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="hero is-info">
+    <div class="hero-body">
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-large" type="search"/>
+                            <span class="icon is-medium is-left">
+                            <i class="fa fa-search"></i>
+                        </span>
+                            <span class="icon is-medium is-right">
+                            <i class="fa fa-empire"></i>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="box cta">
+
+</div>
+<section class="container ">
+    <div class="level-item">
+        <table class="table">
+            <thead>
+            <tr class="has-background-grey-lighter">
+                <th>No.</th>
+                <th>Game Name</th>
+                <th>Genre</th>
+                <th>Amazon Price</th>
+                <th>Best Buy Price</th>
+                <th>EB Game Price</th>
+                <th>More information</th>
+            </tr>
+            </thead>
+            <tfoot class="has-background-grey-lighter">
+            <tr>
+                <th>No.</th>
+                <th>Game Name</th>
+                <th>Genre</th>
+                <th>Amazon Price</th>
+                <th>Best Buy Price</th>
+                <th>EB Game Price</th>
+                <th>More information</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for record in records %}
+            <tr class="is-selected	 has-text-black is-size-5">
+                <td>{{record['No']}}</td>
+                <td>{{record['Name']}}</td>
+                <td>{{record['Genre']}}</td>
+                <td>38</td>
+                <td>19</td>
+                <td>9</td>
+                <td>
+<!--                    class="button is-link is-inverted"-->
+                    <a  class="button  has-background-dark has-text-white" href="{{record['Wiki']}}">
+                        <i class="fab fa-wikipedia-w"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<div class="columns is-mobile is-centered">
+    <div class="column is-half is-narrow">
+    </div>
+</div>
+<footer>
+    <div class="box cta">
+        <div class="columns is-mobile is-centered">
+            <div class="field is-grouped is-grouped-multiline">
+                <div class="control">
+                    <div class="tags has-addons"><a class="tag is-link"
+                                                    href="https://github.com/BulmaTemplates/bulma-templates">Bulma
+                        Templates</a><span class="tag is-light">Daniel Supernault</span></div>
+                </div>
+                <div class="control">
+                    <div class="tags has-addons"><a class="tag is-link">The source code is licensed</a><span
+                            class="tag is-light">MIT  <i class="fa fa-github"></i></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../js/bulma.js"></script>
+</body>
+</html>

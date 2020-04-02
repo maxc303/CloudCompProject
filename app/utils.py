@@ -30,13 +30,27 @@ def update_amz_price(game_name,new_price):
           },
     UpdateExpression = 'SET Amazon_price= :val1',
     ExpressionAttributeValues = {
-        ':val1': 26
+        ':val1': new_price
     }
     )
+
+def list_all():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('PS4_games')
+
+    response = table.scan()
+
+    records = []
+    No = 1
+    for i in response['Items']:
+        i['No']= No
+        No += 1
+        records.append(i)
+    return records
 
 
 
 
 if __name__ == "__main__":
-    ##put_item('test1','fps','/')
-    update_amz_price('test1',1)
+    #put_item('test1','fps','/')
+    update_amz_price('test1',20)
