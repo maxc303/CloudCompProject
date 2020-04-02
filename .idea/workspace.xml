@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f70bffe1-667b-48f3-bf0e-bef81efbbd8a" name="Default Changelist" comment="" />
+    <list default="true" id="f70bffe1-667b-48f3-bf0e-bef81efbbd8a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/main.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,11 +53,11 @@
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\js" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\53148\Desktop\CloudCompProject\app\static\css" />
+      <recent name="C:\Users\53148\Desktop\CloudCompProject\app\static\js" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\static" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\templates" />
       <recent name="C:\Users\53148\Desktop\CloudCompProject\app\tools" />
-      <recent name="C:\Users\53148\Desktop\CloudCompProject\app\js" />
-      <recent name="C:\Users\53148\Desktop\CloudCompProject\app\css" />
     </key>
   </component>
   <component name="RunManager" selected="Python.run">
@@ -181,7 +184,7 @@
       <workItem from="1585418841029" duration="5687000" />
       <workItem from="1585762925826" duration="5810000" />
       <workItem from="1585772034773" duration="7576000" />
-      <workItem from="1585833905572" duration="9633000" />
+      <workItem from="1585833905572" duration="10212000" />
     </task>
     <servers />
   </component>
