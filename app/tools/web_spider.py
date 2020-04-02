@@ -13,17 +13,22 @@ if __name__ == '__main__':
         if(td[0].find('a')):
             if not(td[1].find('a')):
                 url = re.findall(r'href="(.+?)"', str(td[0]))
+                url = str(url).split("'")[1]
                 name = re.findall(r'">(.+?)</a>', str(td[0]))
-                date = re.findall(r'">(.+?)</span>', str(td[6]))
+                name = "'".join(str(name).split("'")[1:-1])
                 if(td[1].find('li')):
                     li = td[1].find('li')
                     genre = re.findall(r'<li>(.+?)</li>', str(li))
+                    genre = str(genre).split("'")[1]
+                    genre = genre.split("\\n")[0]
                 else:
                     genre = re.findall(r'<td>(.+?)</td>', str(td[1]), re.S)
+                    genre = str(genre).split("'")[1]
+                    genre = genre.split("\\n")[0]
                 print("url",str(url))
                 print("name",str(name))
                 print('genre',genre)
-                print('date',date)
-                u.put_item(str(name), str(genre),str(url))
+                if(name!=''):
+                    u.put_item(str(name), str(genre),str(url))
 
 
