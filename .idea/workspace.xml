@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f70bffe1-667b-48f3-bf0e-bef81efbbd8a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/welcome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="f70bffe1-667b-48f3-bf0e-bef81efbbd8a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +32,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/static/css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -186,7 +181,7 @@
       <workItem from="1585418841029" duration="5687000" />
       <workItem from="1585762925826" duration="5810000" />
       <workItem from="1585772034773" duration="7576000" />
-      <workItem from="1585833905572" duration="9338000" />
+      <workItem from="1585833905572" duration="9633000" />
     </task>
     <servers />
   </component>
@@ -202,22 +197,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585854582108" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1585858979809">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1585859434108">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585858979809" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1585858979809">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585859434108" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1585859434108">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585858979809" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1585858979809">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585859434108" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1585859434108">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585858979809" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1585858979809">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585859434108" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1585859434108">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585858979809" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585859434108" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1585857155863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -269,7 +264,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CloudCompProject$web_spider__1_.coverage" NAME="web_spider (1) Coverage Results" MODIFIED="1585782056723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/tools" />
-    <SUITE FILE_PATH="coverage/CloudCompProject$run.coverage" NAME="run Coverage Results" MODIFIED="1585857155849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CloudCompProject$run.coverage" NAME="run Coverage Results" MODIFIED="1585859416891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CloudCompProject$web_spider.coverage" NAME="web_spider Coverage Results" MODIFIED="1585767976006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/CloudCompProject$utils.coverage" NAME="utils Coverage Results" MODIFIED="1585856189092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
   </component>
