@@ -1,44 +1,58 @@
 import requests
+from bs4 import BeautifulSoup
+import lxml
 import re
 import app.utils as u
-from bs4 import BeautifulSoup
 if __name__ == '__main__':
-    file = open('ps4_games.html','r',encoding='utf-8')
-    soup = BeautifulSoup(file, 'html.parser')
-    text = soup.find_all('tr',)
-    for tr in text:
+    prefix = "https://www.pricecharting.com/search-products?q="
+    suffix = "&type=videogames&sort=name&console-uid=G53&region-name=ntsc&exclude-variants=false"
+    records = u.list_all()
+    for record in records:
+        name = record['Name']
+        name = '+'.join(name.split(' '))
+        url = prefix + name + suffix
+        result = requests.get(url)
+        soup = BeautifulSoup(result.content, "lxml")
+        result = soup.find_all('table',{'id':'games_table'})
+        if(len(result)==0):
+            result = soup.find_all('tr',{'data-source-name':"Amazon"})
+            tmp = str(result[2])
+            tmp = tmp.replace('\n', '')
+            if (tmp.find('span') == -1):
+                amazon_price = '/'
+            else:
+                result = result[2].find_all('span', 'js-price')
+                amazon_price = result[0].get_text().split('$')[1]
 
-        print('-'*100)
-        td = tr.find_all('td')
-        if(td[0].find('a')):
-            if not(td[1].find('a')):
-                url = re.findall(r'href="(.+?)"', str(td[0]))
-                url = str(url).split("'")[1]
-                name = re.findall(r'">(.+?)</a>', str(td[0]))
-                if(str(name).__contains__('"')):
-                    name = str(name).split('"')[1]
-                else:
-                    name = str(name).split("'")[1]
-                if(td[1].find('li')):
-                    li = td[1].find('li')
-                    genre = re.findall(r'<li>(.+?)</li>', str(li))
-                    if(str(genre).__contains__('"')):
-                        genre = str(genre).split('"')[1]
-                    else:
-                        genre = str(genre).split("'")[1]
-                    genre = genre.split("\\n")[0]
-                else:
-                    genre = re.findall(r'<td>(.+?)</td>', str(td[1]), re.S)
-                    if (str(genre).__contains__('"')):
-                        genre = str(genre).split('"')[1]
-                    else:
-                        genre = str(genre).split("'")[1]
-                    genre = genre.split("\\n")[0]
-                    genre = genre.split("\\n")[0]
-                print("url",str(url))
-                print("name",str(name))
-                print('genre',genre)
-                if(name!=''):
-                    u.put_item(str(name), str(genre),str(url))
+            result = soup.find_all('tr', {'data-source-name': "eBay"})
+            tmp=str(result[2])
+            tmp = tmp.replace('\n','')
+            if(tmp.find('span')==-1):
+                eBay_price = '/'
+            else:
+                result = result[2].find_all('span', 'js-price')
+                eBay_price = result[0].get_text().split('$')[1]
+        else:
+            a=result[0].find('a')
+            url = re.findall(r'href="(.+?)"', str(a))[0]
+            result = requests.get(url)
+            soup = BeautifulSoup(result.content, "lxml")
+            result = soup.find_all('table', {'id': 'games_table'})
+            result = soup.find_all('tr', {'data-source-name': "Amazon"})
+            tmp = str(result[2])
+            tmp = tmp.replace('\n', '')
+            if (tmp.find('span') == -1):
+                amazon_price = '/'
+            else:
+                result = result[2].find_all('span', 'js-price')
+                amazon_price = result[0].get_text().split('$')[1]
 
-
+            result = soup.find_all('tr', {'data-source-name': "eBay"})
+            tmp = str(result[2])
+            tmp = tmp.replace('\n', '')
+            if (tmp.find('span') == -1):
+                eBay_price = '/'
+            else:
+                result = result[2].find_all('span', 'js-price')
+                eBay_price = result[0].get_text().split('$')[1]
+        print(result)
