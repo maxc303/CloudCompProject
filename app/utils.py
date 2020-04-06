@@ -49,8 +49,50 @@ def list_all():
         records.append(i)
     return records
 
+def update_new_game (game_name,img,price,date):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('New_game')
+    first_char = game_name[0]
+    print(first_char)
+    table.put_item(
+        Item={
+            'FirstChar': first_char,
+            'Name': game_name,
+            'img': img,
+            'price': price,
+            'date': date,
+        }
+    )
+    return
 
+def list_all_new_games():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('New_game')
 
+    response = table.scan()
+
+    records = []
+    No = 1
+    for i in response['Items']:
+        i['No']= No
+        No += 1
+        records.append(i)
+    return records
+
+def delete_all():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('New_game')
+
+    response = table.scan()
+    for each in response['Items']:
+        first_char = each['Name'][0]
+        response = table.delete_item(
+            Key = {
+                'Name':each['Name'],
+                'FirstChar':first_char
+            }
+
+        )
 
 if __name__ == "__main__":
     #put_item('test1','fps','/')

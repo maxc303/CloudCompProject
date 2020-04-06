@@ -8,27 +8,31 @@
     <link rel='stylesheet' href='https://unpkg.com/bulma@0.8.0/css/bulma.min.css'>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/kanban.css') }}">
     <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<nav class="navbar has-shadow">
-    <div class="container">
-        <div class="navbar-brand"><a class="navbar-item" href="../"><img src="http://bulma.io/images/bulma-logo.png"
-                                                                         alt="Bulma: a modern CSS framework based on Flexbox"/></a>
-            <div class="navbar-burger burger" data-target="navMenu"><span></span><span></span><span></span></div>
-        </div>
-        <div class="navbar-menu" id="navMenu">
-            <div class="navbar-end">
-                <div class="navbar-item has-dropdown is-hoverable"><a class="navbar-link">Account</a>
-                    <div class="navbar-dropdown"><a class="navbar-item">Dashboard</a><a
-                            class="navbar-item">Profile</a><a class="navbar-item">Settings</a>
-                        <hr class="navbar-divider"/>
-                        <div class="navbar-item">Logout</div>
+<nav class="navbar has-background-grey-lighter">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item">
+                                <i class="fab fa-playstation fa-4x"></i>
+                            </a>
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                                <span></span>
+                        <span></span>
+                        <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item has-text-danger is-size-3" href="{{url_for('list_new_games')}}">
+                                    New Games
+                                </a>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</nav>
+            </nav>
 <section class="hero is-info">
     <div class="hero-body">
         <div class="container">
@@ -53,7 +57,7 @@
 <div class="box cta">
 
 </div>
-<section class="container ">
+<section class="container has-background-black">
     <div class="level-item">
         <table class="table">
             <thead>

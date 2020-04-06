@@ -13,3 +13,9 @@ def welcome():
 def main():
     records = u.list_all()
     return render_template('main.html', records=records)
+
+@webapp.route('/new_games', methods=['GET'])
+def list_new_games():
+    records = u.list_all_new_games()
+    return render_template('cards.html', records=records)
+
