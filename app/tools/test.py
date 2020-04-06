@@ -1,43 +1,65 @@
-# -*- coding: utf-8 -*-
-
-from datetime import datetime
 import requests
-import lxml.html
-
-
-class TargetSelect:
-    def __init__(self, name=None, select_term=None):
-        self.name = name
-        self.select_term = select_term
-
-title = TargetSelect('product_title', 'h1#title > span#productTitle')
-td = TargetSelect('area', 'tr#places_area__row > td.w2p_fw')
-size = TargetSelect('memory', 'div#variation_size_name > div.a-row > span.selection')
-color = TargetSelect('color', 'div#variation_color_name > div.a-row > span.selection')
-soldby = TargetSelect('soldby', 'div#shipsFromSoldBy_feature_div > div#merchant-info')
-price = TargetSelect('price', 'tr#priceblock_ourprice_row > td.a-span12 > span#priceblock_ourprice')
-timestamp = TargetSelect('timestamp', '{:%Y%m%d%H%M%S}')
-
-def scrape(html):
-    targets = [title, size, color, soldby, price ]
-    results = {}
-    for ele in targets:
-        results[ele.name] = None
-    tree = lxml.html.fromstring(html)
-    for ele in targets:
-        select_res = tree.cssselect(ele.select_term )
-        if select_res:
-            results[ele.name] = " ".join(select_res[0].text_content().split() )
-        else:
-            results[ele.name] = '*** failed ***'
-        print(ele.name + ': ' + results[ele.name])
-    results[timestamp.name] = timestamp.select_term.format(datetime.now() )
-    return results
-
+from bs4 import BeautifulSoup
+import lxml
+import re
+import app.utils as u
 if __name__ == '__main__':
-    seed_url = 'https://www.amazon.com/dp/B01J8PBEUM?th=1'
-    response = requests.get(seed_url)
-    html = response.text
-    # html = '<a></a>'
-    results = scrape(html)
-    print(timestamp.name + ': ' + results[timestamp.name] )
+    prefix = "https://www.pricecharting.com/search-products?q="
+    suffix = "&type=videogames&sort=name&console-uid=G53&region-name=ntsc&exclude-variants=false"
+    records = u.list_all()
+    name = 'Asdivine Hearts'
+    name = '+'.join(name.split(' '))
+    url = prefix + name + suffix
+    result = requests.get(url)
+    soup = BeautifulSoup(result.content, "lxml")
+    result = soup.find_all('table', {'id': 'games_table'})
+    if (len(result) == 0):
+        result = soup.find_all('tr', {'data-source-name': "Amazon"})
+        if (len(result) == 0):
+            pass
+        tmp = str(result[2])
+        tmp = tmp.replace('\n', '')
+        if (tmp.find('span') == -1):
+            amazon_price = '/'
+        else:
+            result = result[2].find_all('span', 'js-price')
+            amazon_price = result[0].get_text().split('$')[1]
+
+        result = soup.find_all('tr', {'data-source-name': "eBay"})
+        tmp = str(result[2])
+        tmp = tmp.replace('\n', '')
+        if (tmp.find('span') == -1):
+            eBay_price = '/'
+        else:
+            result = result[2].find_all('span', 'js-price')
+            eBay_price = result[0].get_text().split('$')[1]
+    else:
+        a = result[0].find('a')
+        url = re.findall(r'href="(.+?)"', str(a))[0]
+        result = requests.get(url)
+        soup = BeautifulSoup(result.content, "lxml")
+        if(soup.find_all('table', {'id': 'games_table'})):
+            result = soup.find_all('span',{'class':'js-price'})
+            if(result[2].get_text()==''):
+                Amazon_price = '/'
+            else:
+                Amazon_price = result[2].get_text().split('$')[1]
+        result = soup.find_all('tr', {'data-source-name': "Amazon"})
+        tmp = str(result[2])
+        tmp = tmp.replace('\n', '')
+        if (tmp.find('span') == -1):
+            amazon_price = '/'
+        else:
+            result = result[2].find_all('span', 'js-price')
+            amazon_price = result[0].get_text().split('$')[1]
+
+        result = soup.find_all('tr', {'data-source-name': "eBay"})
+        tmp = str(result[2])
+        tmp = tmp.replace('\n', '')
+        if (tmp.find('span') == -1):
+            eBay_price = '/'
+        else:
+            result = result[2].find_all('span', 'js-price')
+            eBay_price = result[0].get_text().split('$')[1]
+    print(eBay_price,amazon_price)
+    print(name, ' updated')

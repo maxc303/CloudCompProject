@@ -18,7 +18,7 @@ def put_item (game_name,genre,wiki_link):
     )
     return
 
-def update_amz_price(game_name,new_price):
+def update_price(game_name,amazon_price,eBay_price):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('PS4_games')
     first_char = game_name[0]
@@ -28,9 +28,10 @@ def update_amz_price(game_name,new_price):
               'FirstChar': first_char,
               'Name': game_name
           },
-    UpdateExpression = 'SET Amazon_price= :val1',
+    UpdateExpression = 'SET Amazon_price= :val1, eBay_price= :val2',
     ExpressionAttributeValues = {
-        ':val1': new_price
+        ':val1': amazon_price,
+        ':val2': eBay_price
     }
     )
 

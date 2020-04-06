@@ -62,8 +62,7 @@
                 <th>Game Name</th>
                 <th>Genre</th>
                 <th>Amazon Price</th>
-                <th>Best Buy Price</th>
-                <th>EB Game Price</th>
+                <th>eBay Price</th>
                 <th>More information</th>
             </tr>
             </thead>
@@ -73,8 +72,7 @@
                 <th>Game Name</th>
                 <th>Genre</th>
                 <th>Amazon Price</th>
-                <th>Best Buy Price</th>
-                <th>EB Game Price</th>
+                <th>eBay Price</th>
                 <th>More information</th>
             </tr>
             </tfoot>
@@ -84,9 +82,8 @@
                 <td>{{record['No']}}</td>
                 <td>{{record['Name']}}</td>
                 <td>{{record['Genre']}}</td>
-                <td>38</td>
-                <td>19</td>
-                <td>9</td>
+                <td>{{record['Amazon_price']}}</td>
+                <td>{{record['eBay_price']}}</td>
                 <td>
 <!--                    class="button is-link is-inverted"-->
                     <a  class="button  has-background-dark has-text-white" href="{{record['Wiki']}}">
