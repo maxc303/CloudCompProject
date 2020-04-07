@@ -1,5 +1,5 @@
 import boto3
-
+from boto3.dynamodb.conditions import Key, Attr
 
 #Put a new item to the table
 def put_item (game_name,genre,wiki_link):
@@ -94,6 +94,19 @@ def delete_all():
 
         )
 
+def search_name(text_search):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('PS4_games')
+
+    response = table.scan(
+        FilterExpression= Attr("Genre").contains(text_search))
+    for i in response['Items']:
+        print(i)
+
+    return
+
+
+
 if __name__ == "__main__":
-    #put_item('test1','fps','/')
-    update_amz_price('test1',20)
+    text_search = "puzzle"
+    search_name(text_search)
