@@ -44,7 +44,18 @@
             <span class="flow-3"></span>
         </div>
         <div class="section">
-
+            <div class="box">
+                <form action="{{url_for('search')}}" method="post">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input class="input has-text-centered" name="search" type="text" placeholder="» » » » » » find me « « « « « «">
+                    </div>
+                    <div class="control">
+                        <button class="button is-info" type="submit">Search</button>
+                    </div>
+                </div>
+                </form>
+            </div>
             <!-- Staff -->
 
             <div class="row columns is-multiline">

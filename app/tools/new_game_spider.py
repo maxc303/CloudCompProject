@@ -20,5 +20,6 @@ if __name__ == '__main__':
         price = game.find('span',{'class':'game-collection-item-regular-price'})
         name = name.get_text()
         img = img.attrs.get('data-src')
+        img = ''.join(img.split('&')[:-2])
         price = price.get_text()[1:]
         u.update_new_game(name, img, price,date)

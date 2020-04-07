@@ -8,7 +8,7 @@ if __name__ == '__main__':
     # u.delete_all()
     prefix = 'https://psdeals.net/ca-store/all-games/'
     suffix = '?sort=rating-desc&platforms=ps4'
-    for i in range(1,25):
+    for i in range(1,51):
         url = prefix+str(i)+suffix
         result = requests.get(url)
         soup = BeautifulSoup(result.content, "lxml")
@@ -18,11 +18,13 @@ if __name__ == '__main__':
             url = 'https://psdeals.net/'+url
             result = requests.get(url)
             soup = BeautifulSoup(result.content, "lxml")
-            if(soup.find('span',{'itemprop':'releaseDate'})==None):
-                date = '/'
+            date = soup.find('span',{'itemprop':'releaseDate'}).get_text()
+            div = soup.find('div',{'class':'game-info'})
+            p = div.find_all('p')
+            if(str(p[1]).find('href')==-1):
+                genre = '/'
             else:
-                date = soup.find('span',{'itemprop':'releaseDate'}).get_text()
-
+                genre = p[1].find('a').get_text()
             img = game.find('img', {'itemprop': 'image'})
             img = img.attrs.get('data-src')
             img = ''.join(img.split('&')[:-2])
@@ -30,7 +32,7 @@ if __name__ == '__main__':
             price = game.find('span',{'class':'game-collection-item-regular-price'})
             name = name.get_text()
             price = price.get_text()[1:]
-            # u.update_new_game(name, img, price,date)
-            print(name,price,date)
+            print(name,price,date,genre)
             print(img)
+            u.put_item(name,genre,img,price,date)
             time.sleep(0.1)
