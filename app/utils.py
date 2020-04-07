@@ -81,7 +81,7 @@ def list_all_new_games():
 
 def delete_all():
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('New_game')
+    table = dynamodb.Table('PS4_games')
 
     response = table.scan()
     for each in response['Items']:
@@ -108,5 +108,4 @@ def search_name(text_search):
 
 
 if __name__ == "__main__":
-    text_search = "puzzle"
-    search_name(text_search)
+    delete_all()
