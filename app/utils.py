@@ -129,12 +129,9 @@ def fuzzy_search(text_search):
 
     for each in response['Items']:
         each_name = str(each['Name'])
-        # match_result = find_near_matches(text_search, each_name, max_l_dist=1)
-        # print(each_name)
-        # print(fuzz.partial_ratio(text_search.lower(), each_name.lower()))
-
+        #Change score for accuracy
         if fuzz.partial_ratio(text_search.lower(), each_name.lower()) >=80:
-            #print(match_result)
+
             records.append(each)
 
 

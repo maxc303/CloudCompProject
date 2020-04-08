@@ -23,13 +23,16 @@ def list_new_games():
 def search():
     search_txt = request.form.get('search', "")
     print(search_txt)
-    #Include search
-    #records = u.list_search_results(search_txt)
+    # Return to all if keyword is ""
     if search_txt == "":
         records = u.list_all_new_games()
         return render_template('cards.html', records=records)
 
+    #Include search
+    #records = u.list_search_results(search_txt)
+
     #Fuzzy search
     records = u.fuzzy_search(search_txt)
+
     return render_template('cards.html', records=records)
 
