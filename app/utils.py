@@ -82,7 +82,7 @@ def list_all_new_games():
     return records
 
 def list_search_results(search_txt):
-    table_name ='New_game'
+    table_name ='PS4_games'
 
     response = search_name(search_txt,table_name)
 
@@ -96,7 +96,7 @@ def list_search_results(search_txt):
 
 def delete_all():
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('PS4_games')
+    table = dynamodb.Table('New_game')
 
     response = table.scan()
     for each in response['Items']:
@@ -122,7 +122,7 @@ def search_name(text_search,table_name):
 
 def fuzzy_search(text_search):
     dynamodb = boto3.resource('dynamodb')
-    table_name = 'New_game'
+    table_name = 'PS4_games'
     table = dynamodb.Table(table_name)
     response = table.scan()
     records = []
