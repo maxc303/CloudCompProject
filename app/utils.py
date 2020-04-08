@@ -1,6 +1,7 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-
+from fuzzysearch import find_near_matches
+from fuzzywuzzy import fuzz
 #Put a new item to the table
 def put_item (game_name,genre,img,price,date):
     dynamodb = boto3.resource('dynamodb')
@@ -80,6 +81,19 @@ def list_all_new_games():
         records.append(i)
     return records
 
+def list_search_results(search_txt):
+    table_name ='New_game'
+
+    response = search_name(search_txt,table_name)
+
+    records = []
+    No = 1
+    for i in response['Items']:
+        i['No']= No
+        No += 1
+        records.append(i)
+    return records
+
 def delete_all():
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('PS4_games')
@@ -95,18 +109,38 @@ def delete_all():
 
         )
 
-def search_name(text_search):
+def search_name(text_search,table_name):
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('PS4_games')
+    table = dynamodb.Table(table_name)
 
     response = table.scan(
-        FilterExpression= Attr("Genre").contains(text_search))
+        FilterExpression= Attr("Name").contains(text_search))
     for i in response['Items']:
         print(i)
 
-    return
+    return response
 
+def fuzzy_search(text_search):
+    dynamodb = boto3.resource('dynamodb')
+    table_name = 'New_game'
+    table = dynamodb.Table(table_name)
+    response = table.scan()
+    records = []
+
+    for each in response['Items']:
+        each_name = str(each['Name'])
+        # match_result = find_near_matches(text_search, each_name, max_l_dist=1)
+        # print(each_name)
+        # print(fuzz.partial_ratio(text_search.lower(), each_name.lower()))
+
+        if fuzz.partial_ratio(text_search.lower(), each_name.lower()) >=80:
+            #print(match_result)
+            records.append(each)
+
+
+    return records
 
 
 if __name__ == "__main__":
-    delete_all()
+    text_search ='callofduty'
+    fuzzy_search(text_search)
