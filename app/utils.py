@@ -111,6 +111,7 @@ def list_all_new_games():
     records = []
     for i in response['Items']:
         records.append(i)
+    records.sort(key=lambda k: (k.get('date', 0)),reverse=True)
     return records
 
 def list_all_free_games():

@@ -12,9 +12,11 @@ display: none;
 .tab-pane.is-active {
 display: block;
 position: relative;
+
 }
 .is-active {
 display: initial;
+
 }
 
 .cent{
