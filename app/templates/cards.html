@@ -5,47 +5,49 @@
     <meta charset="UTF-8">
     <title>New Games</title>
     <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.0/css/bulma.min.css" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.0/css/bulma.min.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/new_games.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tabs.css') }}">
 </head>
 
 <body>
 
-        <!-- START NAV -->
-        <nav class="navbar has-background-grey-lighter ">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <p class="navbar-item " >
-                               <i class="fab fa-playstation fa-4x"></i>
-                            </p>
-                        <span class="navbar-burger burger" data-target="navbarMenu">
+<!-- START NAV -->
+<nav class="navbar has-background-grey-lighter ">
+    <div class="container">
+        <div class="navbar-brand">
+            <p class="navbar-item ">
+                <i class="fab fa-playstation fa-4x"></i>
+            </p>
+            <span class="navbar-burger burger" data-target="navbarMenu">
                                 <span></span>
                         <span></span>
                         <span></span>
                         </span>
-                    </div>
-                    <div id="navbarMenu" class="navbar-menu">
-                        <div class="navbar-end">
-                            <a class="navbar-item is-active " href="{{url_for('main')}}">
-                                    <i class="fas fa-home fa-4x"></i>
-                                </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <!-- END NAV -->
-
-    <div class="container">
-        <div id="flow">
-            <span class="flow-1"></span>
-            <span class="flow-2"></span>
-            <span class="flow-3"></span>
         </div>
-        <div class="section">
-            <div class="box">
-                <form action="{{url_for('search')}}" method="post">
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item is-active " href="{{url_for('main')}}">
+                    <i class="fas fa-home fa-4x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- END NAV -->
+
+<div class="container">
+    <div id="flow">
+        <span class="flow-1"></span>
+        <span class="flow-2"></span>
+        <span class="flow-3"></span>
+    </div>
+    <div class="section">
+        <div class="box">
+            <form action="{{url_for('search')}}" method="post">
                 <div class="field has-addons">
                     <div class="control is-expanded">
                         <input class="input has-text-centered" name="search" type="text" placeholder="Search.. ">
@@ -54,51 +56,192 @@
                         <button class="button is-info" type="submit">Search</button>
                     </div>
                 </div>
-                </form>
+            </form>
+        </div>
+        <!-- tab -->
+        <div class="tabs is-centered" id="nav">
+            <ul>
+                <li data-target="pane-2" id="2" class="is-active">
+                    <a class="button has-background-grey-darker has-text-white-ter is-size-4" >
+                        <span class="tab-name">New games</span>
+                    </a>
+                </li>
+                <li data-target="pane-3" id="3">
+                    <a class="button has-background-grey-darker has-text-white-ter is-size-4">
+                        <span class="tab-name">Plus Free games</span>
+                    </a>
+                </li>
+                <li data-target="pane-4" id="4">
+                    <a class="button has-background-grey-darker has-text-white-ter is-size-4">
+                        <span class="tab-name">Will be released Games</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane" id="pane-1">
+
             </div>
-            <!-- Staff -->
-
-            <div class="row columns is-multiline">
-                {% for record in records %}
-                <div class="column is-one-quarter">
-                    <div class="card large round ">
-                        <div class="card-image ">
-                            <figure class="image">
-                                <img src="{{record['img']}}" alt="Image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class=" is-4 has-text-grey-lighter"><strong>Name:</strong>&nbsp; {{record['Name']}}</p>
-                                    <p class=" is-4 has-text-grey-lighter"><strong>Price:</strong>&nbsp; {{record['price']}}</p>
-                                    <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp; {{record['date']}}</p>
-                                </div>
+            <div class="tab-pane" id="pane-3">
+                <div class="row columns is-multiline">
+                    {% for record in free_games %}
+                    <div class="column is-one-quarter modal-button">
+                        <div class="card large round ">
+                            <div class="card-image ">
+                                <figure class="image">
+                                    <img src="{{record['img']}}" alt="Image" id="showModal">
+                                </figure>
                             </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Name:</strong>&nbsp;
+                                            {{record['Name']}}
+                                        </p>
+                                        </p>
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp;
+                                            {{record['date']}}</p>
+                                        <footer><strong>More:</strong>&nbsp;
+                                            <a href="{{record['ps_link']}}" target="_blank">
+                                                <i class="fab fa-playstation "></i>
+                                            </a>
+                                        </footer>
 
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
+            <div class="tab-pane" id="pane-4">
+                <div class="row columns is-multiline">
+                    {% for record in will_release_games %}
+                    <div class="column is-one-quarter modal-button">
+                        <div class="card large round ">
+                            <div class="card-image ">
+                                <figure class="image">
+                                    <img src="{{record['img']}}" alt="Image" id="showModal">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Name:</strong>&nbsp;
+                                            {{record['Name']}}
+                                        </p>
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Price:</strong>&nbsp;
+                                            {{record['price']}}
+                                        </p>
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp;
+                                            {{record['date']}}</p>
+                                        <footer><strong>More:</strong>&nbsp;
+                                            <a href="{{record['ps_link']}}" target="_blank">
+                                                <i class="fab fa-playstation "></i>
+                                            </a>
+                                        </footer>
 
-            <!-- End Staff -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane is-active" id="pane-2">
+                <div class="row columns is-multiline">
+                    {% for record in new_games %}
+                    <div class="column is-one-quarter modal-button">
+                        <div class="card large round ">
+                            <div class="card-image ">
+                                <figure class="image">
+                                    <img src="{{record['img']}}" alt="Image" id="showModal">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Name:</strong>&nbsp;
+                                            {{record['Name']}}
+                                        </p>
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Price:</strong>&nbsp;
+                                            {{record['price']}}
+                                        </p>
+                                        <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp;
+                                            {{record['date']}}</p>
+                                        <footer><strong>More:</strong>&nbsp;
+                                            <a href="{{record['ps_link']}}" target="_blank">
+                                                <i class="fab fa-playstation "></i>
+                                            </a>
+                                        </footer>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!--        end tab-->
+
+        <!--        <div class="row columns is-multiline">-->
+        <!--            {% for record in records %}-->
+        <!--            <div class="column is-one-quarter modal-button">-->
+        <!--                <div class="card large round ">-->
+        <!--                    <div class="card-image ">-->
+        <!--                        <figure class="image">-->
+        <!--                            <img src="{{record['img']}}" alt="Image" id="showModal">-->
+        <!--                        </figure>-->
+        <!--                    </div>-->
+        <!--                    <div class="card-content">-->
+        <!--                        <div class="media">-->
+        <!--                            <div class="media-content">-->
+        <!--                                <p class=" is-4 has-text-grey-lighter"><strong>Name:</strong>&nbsp; {{record['Name']}}-->
+        <!--                                </p>-->
+        <!--                                <p class=" is-4 has-text-grey-lighter"><strong>Price:</strong>&nbsp; {{record['price']}}-->
+        <!--                                </p>-->
+        <!--                                <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp;-->
+        <!--                                    {{record['date']}}</p>-->
+        <!--                                <p><a href="{{record['ps_link']}}" target="_blank"><i-->
+        <!--                                        class="fab fa-playstation "></i></a></p>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+
+        <!--            {% endfor %}-->
+        <!--        </div>-->
+
+        <!-- End Staff -->
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                <strong>PS4 Games Browser</strong>
+
+            </p>
         </div>
     </div>
+</footer>
 
-    <footer class="footer">
-            <div class="container">
-                <div class="content has-text-centered">
-                    <p>
-                        <strong>PS4 Games Browser</strong>
-
-                    </p>
-                </div>
-            </div>
-        </footer>
-
-            <script src="{{ url_for('static', filename='js/bulma.js') }}"></script>
-
+<script src="{{ url_for('static', filename='js/bulma.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
 </body>
 
 </html>

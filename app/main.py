@@ -16,8 +16,10 @@ def main():
 
 @webapp.route('/', methods=['GET'])
 def list_new_games():
-    records = u.list_all_new_games()
-    return render_template('cards.html', records=records)
+    new_games = u.list_all_new_games()
+    will_release_games = u.list_all_will_release_games()
+    free_games = u.list_all_free_games()
+    return render_template('cards.html', new_games=new_games, will_release_games=will_release_games,free_games=free_games)
 
 @webapp.route('/search', methods=['GET', 'POST'])
 def search():

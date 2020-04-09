@@ -5,7 +5,8 @@ background: #041221;
 .card {overflow:hidden;
 background-color: #222831}
 .card.large {
-height: 430px;
+height: 450px;
+    width:300px;
 -webkit-backface-visibility: hidden;
 backface-visibility: initial;
 border-radius: 5px;

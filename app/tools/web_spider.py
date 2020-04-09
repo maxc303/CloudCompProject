@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import lxml
-import re
+import re, time
 import app.utils as u
 if __name__ == '__main__':
     prefix = "https://www.pricecharting.com/search-products?q="
@@ -9,9 +9,7 @@ if __name__ == '__main__':
     records = u.list_all()
     i=0
     for record in records:
-        i+=1
-        if(i<429):
-            continue
+
         name = record['Name']
         name = '+'.join(name.split(' '))
         url = prefix + name + suffix
@@ -76,3 +74,4 @@ if __name__ == '__main__':
                 eBay_price = result[0].get_text().split('$')[1]
         u.update_price(record['Name'],amazon_price,eBay_price)
         print('amazon price',amazon_price,', ebay price',eBay_price,'  ',record['Name'],' updated')
+        time.sleep(0.1)

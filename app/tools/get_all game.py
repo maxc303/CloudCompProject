@@ -25,6 +25,7 @@ if __name__ == '__main__':
                 genre = '/'
             else:
                 genre = p[1].find('a').get_text()
+            link = soup.find('a',{'class':'game-buy-button-href'}).attrs.get('href')
             img = game.find('img', {'itemprop': 'image'})
             img = img.attrs.get('data-src')
             img = ''.join(img.split('&')[:-2])
@@ -34,5 +35,5 @@ if __name__ == '__main__':
             price = price.get_text()[1:]
             print(name,price,date,genre)
             print(img)
-            u.put_item(name,genre,img,price,date)
+            u.put_item(name,genre,img,price,date,link)
             time.sleep(0.1)

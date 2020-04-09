@@ -3,7 +3,7 @@ from boto3.dynamodb.conditions import Key, Attr
 from fuzzysearch import find_near_matches
 from fuzzywuzzy import fuzz
 #Put a new item to the table
-def put_item (game_name,genre,img,price,date):
+def put_item (game_name,genre,img,price,date,link):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('PS4_games')
     first_char = game_name[0]
@@ -16,6 +16,7 @@ def put_item (game_name,genre,img,price,date):
             'img': img,
             "price":price,
             'date' :date,
+            'ps_link': link,
         }
     )
     return
@@ -44,14 +45,12 @@ def list_all():
     response = table.scan()
 
     records = []
-    No = 1
+
     for i in response['Items']:
-        i['No']= No
-        No += 1
         records.append(i)
     return records
 
-def update_new_game (game_name,img,price,date):
+def update_new_game (game_name,img,price,date,link):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('New_game')
     first_char = game_name[0]
@@ -63,9 +62,45 @@ def update_new_game (game_name,img,price,date):
             'img': img,
             'price': price,
             'date': date,
+            'ps_link':link,
         }
     )
     return
+
+def update_will_free_game (game_name,img,price,date,link):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('Free_games')
+    first_char = game_name[0]
+    print(first_char)
+    table.put_item(
+        Item={
+            'FirstChar': first_char,
+            'Name': game_name,
+            'img': img,
+            'price': price,
+            'date': date,
+            'ps_link':link,
+        }
+    )
+    return
+
+def update_will_release_game (game_name,img,price,date,link):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('Will_release_games')
+    first_char = game_name[0]
+    print(first_char)
+    table.put_item(
+        Item={
+            'FirstChar': first_char,
+            'Name': game_name,
+            'img': img,
+            'price': price,
+            'date': date,
+            'ps_link':link,
+        }
+    )
+    return
+
 
 def list_all_new_games():
     dynamodb = boto3.resource('dynamodb')
@@ -74,10 +109,29 @@ def list_all_new_games():
     response = table.scan()
 
     records = []
-    No = 1
     for i in response['Items']:
-        i['No']= No
-        No += 1
+        records.append(i)
+    return records
+
+def list_all_free_games():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('Free_games')
+
+    response = table.scan()
+
+    records = []
+    for i in response['Items']:
+        records.append(i)
+    return records
+
+def list_all_will_release_games():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('Will_release_games')
+
+    response = table.scan()
+
+    records = []
+    for i in response['Items']:
         records.append(i)
     return records
 
@@ -94,9 +148,40 @@ def list_search_results(search_txt):
         records.append(i)
     return records
 
-def delete_all():
+def delete_all_new():
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('New_game')
+
+    response = table.scan()
+    for each in response['Items']:
+        first_char = each['Name'][0]
+        response = table.delete_item(
+            Key = {
+                'Name':each['Name'],
+                'FirstChar':first_char
+            }
+
+        )
+
+def delete_all_free():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('Free_games')
+
+    response = table.scan()
+    for each in response['Items']:
+        first_char = each['Name'][0]
+        response = table.delete_item(
+            Key = {
+                'Name':each['Name'],
+                'FirstChar':first_char
+            }
+
+        )
+
+
+def delete_all_will():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('Will_release_games')
 
     response = table.scan()
     for each in response['Items']:
