@@ -8,7 +8,7 @@ if __name__ == '__main__':
     # u.delete_all()
     prefix = 'https://psdeals.net/ca-store/all-games/'
     suffix = '?sort=rating-desc&platforms=ps4'
-    for i in range(1,51):
+    for i in range(1,80):
         url = prefix+str(i)+suffix
         result = requests.get(url)
         soup = BeautifulSoup(result.content, "lxml")
