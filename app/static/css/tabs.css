@@ -1,7 +1,4 @@
-.tabs {
-margin-bottom: -1px !important;
-position: relative;
-}
+
 .tab-name {
 	width:250px;
 }
@@ -19,15 +16,8 @@ display: initial;
 
 }
 
-.cent{
-display: block;
-margin: 10px auto;
-padding: 5px;
-border: 1px solid #ccc}
 
-.video
-{display: block;
-margin: 0 auto;}
+
 
 /* CSS from http://embedresponsively.com */
 .embed-container {
