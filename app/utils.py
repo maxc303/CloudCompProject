@@ -126,14 +126,19 @@ def fuzzy_search(text_search):
     table = dynamodb.Table(table_name)
     response = table.scan()
     records = []
-
+    max_score = 0
     for each in response['Items']:
         each_name = str(each['Name'])
         #Change score for accuracy
-        if fuzz.partial_ratio(text_search.lower(), each_name.lower()) >=80:
+        each_score = fuzz.partial_ratio(text_search.lower(), each_name.lower())
 
-            records.append(each)
-
+        if each_score>=85:
+            print(each_score)
+            if each_score >= max_score:
+                records.insert(0, each)
+                max_score = each_score
+            else:
+                records.append(each)
 
     return records
 
