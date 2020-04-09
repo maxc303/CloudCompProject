@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bulma cards</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <!-- Bulma Version 0.8.x-->
+    <link rel='stylesheet' href='https://unpkg.com/bulma@0.8.0/css/bulma.min.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/kanban.css') }}">
+    <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar has-background-grey-lighter">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item">
+                                <i class="fab fa-playstation fa-4x"></i>
+                            </a>
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                                <span></span>
+                        <span></span>
+                        <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item has-text-danger is-size-3" href="{{url_for('list_new_games')}}">
+                                    New Games
+                                </a>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+<section class="hero is-info">
+    <div class="hero-body">
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-large" type="search"/>
+                            <span class="icon is-medium is-left">
+                            <i class="fa fa-search"></i>
+                        </span>
+                            <span class="icon is-medium is-right">
+                            <i class="fa fa-empire"></i>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="box cta">
+
+</div>
+<section class="container has-background-black">
+    <div class="level-item">
+        <table class="table">
+            <thead>
+            <tr class="has-background-grey-lighter">
+                <th>No.</th>
+                <th>Game Name</th>
+                <th>Genre</th>
+                <th>Amazon Price</th>
+                <th>eBay Price</th>
+                <th>More information</th>
+            </tr>
+            </thead>
+            <tfoot class="has-background-grey-lighter">
+            <tr>
+                <th>No.</th>
+                <th>Game Name</th>
+                <th>Genre</th>
+                <th>Amazon Price</th>
+                <th>eBay Price</th>
+                <th>More information</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for record in records %}
+            <tr class="has-background-white-ter	 has-text-black is-size-5">
+                <td>{{record['No']}}</td>
+                <td>{{record['Name']}}</td>
+                <td>{{record['Genre']}}</td>
+                <td>{{record['Amazon_price']}}</td>
+                <td>{{record['eBay_price']}}</td>
+                <td>
+<!--                    class="button is-link is-inverted"-->
+                    <a  class="button  has-background-dark has-text-white" href="{{record['Wiki']}}">
+                        <i class="fab fa-wikipedia-w"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<div class="columns is-mobile is-centered">
+    <div class="column is-half is-narrow">
+    </div>
+</div>
+<footer>
+    <div class="box cta">
+        <div class="columns is-mobile is-centered">
+            <div class="field is-grouped is-grouped-multiline">
+                <div class="control">
+                    <div class="tags has-addons"><a class="tag is-link"
+                                                    href="https://github.com/BulmaTemplates/bulma-templates">Bulma
+                        Templates</a><span class="tag is-light">Daniel Supernault</span></div>
+                </div>
+                <div class="control">
+                    <div class="tags has-addons"><a class="tag is-link">The source code is licensed</a><span
+                            class="tag is-light">MIT  <i class="fa fa-github"></i></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{{ url_for('static', filename='js/bulma.js') }}"></script>
+</body>
+</html>

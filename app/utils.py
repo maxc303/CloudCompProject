@@ -134,6 +134,7 @@ def list_all_will_release_games():
     records = []
     for i in response['Items']:
         records.append(i)
+    records.sort(key=lambda k: (k.get('date', 0)), reverse=False)
     return records
 
 def list_search_results(search_txt):

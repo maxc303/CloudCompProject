@@ -9,17 +9,14 @@ webapp.permanent_session_lifetime = timedelta(days=1)
 def welcome():
     return render_template('welcome.html')
 
-@webapp.route('/main', methods=['GET'])
-def main():
-    records = u.list_all()
-    return render_template('main.html', records=records)
+
 
 @webapp.route('/', methods=['GET'])
-def list_new_games():
+def main():
     new_games = u.list_all_new_games()
     will_release_games = u.list_all_will_release_games()
     free_games = u.list_all_free_games()
-    return render_template('cards.html', new_games=new_games, will_release_games=will_release_games,free_games=free_games)
+    return render_template('main.html', new_games=new_games, will_release_games=will_release_games,free_games=free_games)
 
 @webapp.route('/search', methods=['GET', 'POST'])
 def search():
@@ -27,8 +24,7 @@ def search():
     print(search_txt)
     # Return to all if keyword is ""
     if search_txt == "":
-        records = u.list_all_new_games()
-        return render_template('cards.html', records=records)
+        return redirect(url_for('main'))
 
     #Include search
     #records = u.list_search_results(search_txt)
@@ -36,5 +32,5 @@ def search():
     #Fuzzy search
     records = u.fuzzy_search(search_txt)
 
-    return render_template('cards.html', records=records)
+    return render_template('search_result.html', records=records)
 
