@@ -229,7 +229,63 @@ def fuzzy_search(text_search):
 
     return records
 
+def image_detect(file_key):
+
+    rekognition = boto3.client("rekognition")
+    response = rekognition.detect_labels(
+        Image={
+            "S3Object": {
+                "Bucket": 'ps4img',
+                "Name": file_key,
+            }
+
+        },
+        MaxLabels=5,
+        MinConfidence=80,
+
+    )
+    output_string = ''
+    for each in response['Labels']:
+        #print(each['Name'],each['Confidence'])
+        #output_string.append(each['Name'])
+        output_string += ' '+each['Name']
+    print(output_string)
+    return output_string
+
+def calculate_label_distance(label_1,label_2):
+
+    return
+
+def database_add_label():
+    dynamodb = boto3.resource('dynamodb')
+    table_name = 'PS4_games'
+    table = dynamodb.Table(table_name)
+    response = table.scan()
+
+    for each in response['Items']:
+        each_name = str(each['Name'])
+        labels = image_detect('dynamo/'+each_name+'.jpeg')
+        if not labels:
+            labels = '/'
+        table.update_item(
+            Key={
+                'Name': each['Name'],
+                'FirstChar': each['Name'][0]
+            },
+            UpdateExpression='SET labels = :val1',
+            ExpressionAttributeValues={
+                ':val1': labels
+            }
+        )
+
+    return
+
+
 
 if __name__ == "__main__":
-    text_search ='callofduty'
-    fuzzy_search(text_search)
+    # text_search ='callofduty'
+    # fuzzy_search(text_search)
+    # s3_client = boto3.client('s3')
+    # response = s3_client.upload_file('sample_image1.jpg', 'ps4img', 'tmp/input_tmp.jpg')
+    # image_detect('tmp/input_tmp.jpg')
+    database_add_label()
