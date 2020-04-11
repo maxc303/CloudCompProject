@@ -2,6 +2,7 @@ import boto3
 from boto3.dynamodb.conditions import Key, Attr
 from fuzzysearch import find_near_matches
 from fuzzywuzzy import fuzz
+from Levenshtein import distance as levenshtein_distance
 #Put a new item to the table
 def put_item (game_name,genre,img,price,date,link):
     dynamodb = boto3.resource('dynamodb')
@@ -252,9 +253,31 @@ def image_detect(file_key):
     print(output_string)
     return output_string
 
-def calculate_label_distance(label_1,label_2):
 
-    return
+def text_detect(file_key):
+
+    rekognition = boto3.client("rekognition")
+    response = rekognition.detect_text(
+        Image={
+            "S3Object": {
+                "Bucket": 'ps4img',
+                "Name": file_key,
+            }
+
+        },
+    )
+    #print(response)
+    output_string = ''
+    for each in response['TextDetections']:
+        #print(each['Name'],each['Confidence'])
+        #output_string.append(each['Name'])
+        if each['Confidence']>=95:
+            #print(each['DetectedText'])
+            output_string += ' '+each['DetectedText']
+    print(output_string)
+    return output_string
+
+
 
 def database_add_label():
     dynamodb = boto3.resource('dynamodb')
@@ -280,12 +303,62 @@ def database_add_label():
 
     return
 
+def database_add_text():
+    dynamodb = boto3.resource('dynamodb')
+    table_name = 'PS4_games'
+    table = dynamodb.Table(table_name)
+    response = table.scan()
+    count =0;
+    for each in response['Items']:
+        print(count)
+        count +=1
+        each_name = str(each['Name'])
+        text_str = text_detect('dynamo/'+each_name+'.jpeg')
+        if not text_str:
+            text_str = '/'
+        table.update_item(
+            Key={
+                'Name': each['Name'],
+                'FirstChar': each['Name'][0]
+            },
+            UpdateExpression='SET text_str = :val1',
+            ExpressionAttributeValues={
+                ':val1': text_str
+            }
+        )
+
+    return
+def image_text_search(text_search):
+    dynamodb = boto3.resource('dynamodb')
+    table_name = 'PS4_games'
+    table = dynamodb.Table(table_name)
+    response = table.scan()
+    records = []
+    max_score = 0
+    for each in response['Items']:
+        each_name = str(each['Name'])
+        #Change score for accuracy
+        each_score = fuzz.partial_ratio(text_search.lower(), each_name.lower())
+
+        if each_score>=80:
+            print(each_name)
+            print(each_score)
+            if each_score >= max_score:
+                records.insert(0, each)
+                max_score = each_score
+            else:
+                records.append(each)
+
+    return records
 
 
 if __name__ == "__main__":
     # text_search ='callofduty'
     # fuzzy_search(text_search)
-    # s3_client = boto3.client('s3')
-    # response = s3_client.upload_file('sample_image1.jpg', 'ps4img', 'tmp/input_tmp.jpg')
+    s3_client = boto3.client('s3')
+    response = s3_client.upload_file('sample_image1.jpg', 'ps4img', 'tmp/input_tmp.jpg')
     # image_detect('tmp/input_tmp.jpg')
-    database_add_label()
+    #database_add_label()
+    response = text_detect('tmp/input_tmp.jpg')
+    image_text_search(response)
+    #database_add_text()
