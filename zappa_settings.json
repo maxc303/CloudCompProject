@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "app_function": "app.__init__.webapp",
+        "aws_region": "us-east-1",
+	"debug":true,
+	"http_methods":["GET","POST"],
+        "profile_name": "default",
+        "project_name": "cloudcompprojec",
+        "runtime": "python3.7",
+        "s3_bucket": "zappa-55fnksyiq",
+	"keep_warm": false, 
+	"manage_roles": true,
+	"use_precompiled_packages": true
+    }
+}

@@ -2,7 +2,6 @@ import boto3
 from boto3.dynamodb.conditions import Key, Attr
 from fuzzysearch import find_near_matches
 from fuzzywuzzy import fuzz
-from Levenshtein import distance as levenshtein_distance
 #Put a new item to the table
 def put_item (game_name,genre,img,price,date,link):
     dynamodb = boto3.resource('dynamodb')

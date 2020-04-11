@@ -10,3 +10,4 @@
 *.jpg
 *.jpeg
 /my-photos/
+/a3env/*

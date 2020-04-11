@@ -62,3 +62,5 @@ def search():
         return render_template('search_result.html', records=records)
 
 
+if __name__ == '__main__':
+ webapp.run()

@@ -1,0 +1,6 @@
+flask
+zappa 
+boto3
+fuzzywuzzy
+fuzzysearch
+
