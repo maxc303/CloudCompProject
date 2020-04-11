@@ -1,6 +1,6 @@
 {
     "dev": {
-        "app_function": "app.__init__.webapp",
+        "app_function": "app.my_app.webapp",
         "aws_region": "us-east-1",
 	"debug":true,
 	"http_methods":["GET","POST"],

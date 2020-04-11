@@ -1,10 +1,13 @@
+from flask import Flask
 
-from app import webapp
 from datetime import timedelta
 from flask import  redirect, url_for, g, session, render_template, request
 import app.utils as u
 import os, boto3
-from app.config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
+from app.config import ALLOWED_EXTENSIONS,UPLOAD_FOLDER
+
+webapp = Flask(__name__)
+
 webapp.secret_key = '\x80\xa9s*\x12\xc7x\xa9d\x1f(\x03\xbeHJ:\x9f\xf0!\xb1a\xaa\x0f'
 webapp.permanent_session_lifetime = timedelta(days=1)
 
