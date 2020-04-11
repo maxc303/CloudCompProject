@@ -339,16 +339,16 @@ def image_text_search(text_search):
         each_name = str(each['Name'])
         #Change score for accuracy
         each_score = fuzz.partial_ratio(text_search.lower(), each_name.lower())
-
-        if each_score>=80:
+        if each_score > max_score:
+            max_score = each_score
+        if each_score>=70:
             print(each_name)
             print(each_score)
             if each_score >= max_score:
                 records.insert(0, each)
-                max_score = each_score
             else:
                 records.append(each)
-
+    print(max_score)
     return records
 
 

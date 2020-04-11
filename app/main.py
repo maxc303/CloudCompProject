@@ -43,7 +43,9 @@ def search():
             key = 'upload/'+filename
             s3.meta.client.upload_file(filePath, 'ps4img', key)
             os.remove(filePath)
-            return 'img uploaded'
+            response = u.text_detect(key)
+            records = u.image_text_search(response)
+            return render_template('search_result.html', records=records)
     else:
         search_txt = request.form.get('search', "")
         print(search_txt)
@@ -58,4 +60,5 @@ def search():
         records = u.fuzzy_search(search_txt)
 
         return render_template('search_result.html', records=records)
+
 
