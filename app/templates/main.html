@@ -56,10 +56,10 @@
       function getFilename(){
         var filename=document.getElementById("file").value;
         if(filename==undefined||filename==""){
-          document.getElementById("filename").innerHTML="点击此处上传文件";
+          document.getElementById("filename").innerHTML="Click to add file";
         } else{
           var fn=filename.substring(filename.lastIndexOf("\\")+1);
-          document.getElementById("filename").innerHTML=fn; //将截取后的文件名填充到span中
+          document.getElementById("filename").innerHTML=fn;
         }
       }
     </script>
@@ -133,11 +133,11 @@
                                         </p>
                                         <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp;
                                             {{record['date']}}</p>
-                                        <footer><strong>More:</strong>&nbsp;
+                                        <p><strong>More:</strong>&nbsp;
                                             <a href="{{record['ps_link']}}" target="_blank">
                                                 <i class="fab fa-playstation "></i>
                                             </a>
-                                        </footer>
+                                        </p>
 
                                     </div>
                                 </div>
@@ -169,11 +169,11 @@
                                         </p>
                                         <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp;
                                             {{record['date']}}</p>
-                                        <footer><strong>More:</strong>&nbsp;
+                                        <p><strong>More:</strong>&nbsp;
                                             <a href="{{record['ps_link']}}" target="_blank">
                                                 <i class="fab fa-playstation "></i>
                                             </a>
-                                        </footer>
+                                        </p>
 
                                     </div>
                                 </div>
@@ -205,11 +205,11 @@
                                         </p>
                                         <p class=" is-4 has-text-grey-lighter"><strong>Release Date:</strong>&nbsp;
                                             {{record['date']}}</p>
-                                        <footer><strong>More:</strong>&nbsp;
+                                        <p><strong>More:</strong>&nbsp;
                                             <a href="{{record['ps_link']}}" target="_blank">
                                                 <i class="fab fa-playstation "></i>
                                             </a>
-                                        </footer>
+                                        </p>
 
                                     </div>
                                 </div>
