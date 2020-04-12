@@ -47,6 +47,7 @@ def list_all():
     records = []
 
     for i in response['Items']:
+        i['amazon_link'] = 'https://www.amazon.ca/s?k='+i['Name'].replace(' ','+')+'+ps4'
         records.append(i)
     return records
 
@@ -110,6 +111,7 @@ def list_all_new_games():
 
     records = []
     for i in response['Items']:
+        i['amazon_link'] = 'https://www.amazon.ca/s?k='+i['Name'].replace(' ','+')+'+ps4'
         records.append(i)
     records.sort(key=lambda k: (k.get('date', 0)),reverse=True)
     return records
@@ -122,6 +124,7 @@ def list_all_free_games():
 
     records = []
     for i in response['Items']:
+        i['amazon_link'] = 'https://www.amazon.ca/s?k='+i['Name'].replace(' ','+')+'+ps4'
         records.append(i)
     return records
 
@@ -133,6 +136,7 @@ def list_all_will_release_games():
 
     records = []
     for i in response['Items']:
+        i['amazon_link'] = 'https://www.amazon.ca/s?k='+i['Name'].replace(' ','+')+'+ps4'
         records.append(i)
     records.sort(key=lambda k: (k.get('date', 0)), reverse=False)
     return records
@@ -143,10 +147,8 @@ def list_search_results(search_txt):
     response = search_name(search_txt,table_name)
 
     records = []
-    No = 1
     for i in response['Items']:
-        i['No']= No
-        No += 1
+        i['amazon_link'] = 'https://www.amazon.ca/s?k='+i['Name'].replace(' ','+')+'+ps4'
         records.append(i)
     return records
 
@@ -227,6 +229,8 @@ def fuzzy_search(text_search,type='Name'):
                 max_score = each_score
             else:
                 records.append(each)
+    for i in records:
+        i['amazon_link'] = 'https://www.amazon.ca/s?k=' + i['Name'].replace(' ', '+') + '+ps4'
     return records
 
 def image_detect(file_key):

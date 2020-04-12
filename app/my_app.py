@@ -45,6 +45,8 @@ def search():
             records = u.image_text_search(response)
             if not records:
                 records = u.search_genre(key)
+            for i in records:
+                i['amazon_link'] = 'https://www.amazon.ca/s?k=' + i['Name'].replace(' ', '+') + '+ps4'
             return render_template('search_result.html', records=records)
     else:
         search_txt = request.form.get('search', "")
