@@ -356,11 +356,11 @@ def search_genre(tmp_key):
     thelist = genre_txt.split()
 
 
-    if 'Gun' or 'Weapon' or 'Military' in genre_txt:
+    if 'Gun' and 'Weapon' in genre_txt:
         records = fuzzy_search('Shooter','Genre')
     elif 'Sports Car' and 'Coupe' in genre_txt:
         records = fuzzy_search('Racing', 'Genre')
-    elif 'Call of Duty' in genre_txt:
+    elif 'Military' in genre_txt:
         records = fuzzy_search('Shooter','Genre')
     elif 'Sports' and 'Ball' in genre_txt:
         records = fuzzy_search('Sport', 'Genre')
