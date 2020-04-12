@@ -40,6 +40,8 @@ def search():
             s3.upload_fileobj(file, 'ps4img', key)
             response = u.text_detect(key)
             records = u.image_text_search(response)
+            if not records:
+                records = u.search_genre(key)
             return render_template('search_result.html', records=records)
     else:
         search_txt = request.form.get('search', "")

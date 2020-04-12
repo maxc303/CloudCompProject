@@ -207,7 +207,7 @@ def search_name(text_search,table_name):
 
     return response
 
-def fuzzy_search(text_search):
+def fuzzy_search(text_search,type='Name'):
     dynamodb = boto3.resource('dynamodb')
     table_name = 'PS4_games'
     table = dynamodb.Table(table_name)
@@ -215,18 +215,18 @@ def fuzzy_search(text_search):
     records = []
     max_score = 0
     for each in response['Items']:
-        each_name = str(each['Name'])
+        each_name = str(each[type])
         #Change score for accuracy
         each_score = fuzz.partial_ratio(text_search.lower(), each_name.lower())
 
         if each_score>=85:
-            print(each_score)
+            # print(each_score)
+            # print(each_name)
             if each_score >= max_score:
                 records.insert(0, each)
                 max_score = each_score
             else:
                 records.append(each)
-
     return records
 
 def image_detect(file_key):
@@ -240,8 +240,8 @@ def image_detect(file_key):
             }
 
         },
-        MaxLabels=5,
-        MinConfidence=80,
+        MaxLabels=10,
+        MinConfidence=60,
 
     )
     output_string = ''
@@ -307,7 +307,7 @@ def database_add_text():
     table_name = 'PS4_games'
     table = dynamodb.Table(table_name)
     response = table.scan()
-    count =0;
+    count =0
     for each in response['Items']:
         print(count)
         count +=1
@@ -350,6 +350,26 @@ def image_text_search(text_search):
     print(max_score)
     return records
 
+def search_genre(tmp_key):
+    genre_txt = image_detect(tmp_key)
+    records = []
+    thelist = genre_txt.split()
+
+
+    if 'Gun' or 'Weapon' or 'Military' in genre_txt:
+        records = fuzzy_search('Shooter','Genre')
+    elif 'Sports Car' and 'Coupe' in genre_txt:
+        records = fuzzy_search('Racing', 'Genre')
+    elif 'Call of Duty' in genre_txt:
+        records = fuzzy_search('Shooter','Genre')
+    elif 'Sports' and 'Ball' in genre_txt:
+        records = fuzzy_search('Sport', 'Genre')
+    elif 'Knight' and 'Samurai' in genre_txt:
+        records = fuzzy_search('Adventure', 'Genre')
+    if len(records)>10:
+        records = records[1:10]
+
+    return records
 
 if __name__ == "__main__":
     # text_search ='callofduty'
@@ -358,6 +378,9 @@ if __name__ == "__main__":
     response = s3_client.upload_file('sample_image1.jpg', 'ps4img', 'tmp/input_tmp.jpg')
     # image_detect('tmp/input_tmp.jpg')
     #database_add_label()
-    response = text_detect('tmp/input_tmp.jpg')
-    image_text_search(response)
+    response = image_detect('tmp/input_tmp.jpg')
+    print(response)
+    search_genre('tmp/input_tmp.jpg')
+    #fuzzy_search(response,'Genre')
+    #image_text_search(response)
     #database_add_text()
