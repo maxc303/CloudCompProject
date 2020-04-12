@@ -37,14 +37,10 @@ def search():
     file = request.files['file']
     if file.filename != '':
         if file and allowed_file(file.filename):
-            path = os.path.join('.' + UPLOAD_FOLDER)
             filename = file.filename
-            filePath = path + '/' + filename
-            file.save(filePath)
-            s3 = boto3.resource('s3')
-            key = 'upload/'+filename
-            s3.meta.client.upload_file(filePath, 'ps4img', key)
-            os.remove(filePath)
+            s3 = boto3.client('s3')
+            key = 'upload/' + filename
+            s3.upload_fileobj(file, 'ps4img', key)
             response = u.text_detect(key)
             records = u.image_text_search(response)
             if not records:
