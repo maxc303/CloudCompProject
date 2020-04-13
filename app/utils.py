@@ -2,8 +2,12 @@ import boto3
 from boto3.dynamodb.conditions import Key, Attr
 from fuzzysearch import find_near_matches
 from fuzzywuzzy import fuzz
-#Put a new item to the table
+
+
 def put_item (game_name,genre,img,price,date,link):
+    '''
+    add data into dynamodb
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('PS4_games')
     first_char = game_name[0]
@@ -19,26 +23,13 @@ def put_item (game_name,genre,img,price,date,link):
             'ps_link': link,
         }
     )
-    return
 
-def update_price(game_name,amazon_price,eBay_price):
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('PS4_games')
-    first_char = game_name[0]
-    table.update_item(
-
-        Key = {
-              'FirstChar': first_char,
-              'Name': game_name
-          },
-    UpdateExpression = 'SET Amazon_price= :val1, eBay_price= :val2',
-    ExpressionAttributeValues = {
-        ':val1': amazon_price,
-        ':val2': eBay_price
-    }
-    )
 
 def list_all():
+    '''
+    list  all games in the dynamodb
+    :return: list contains game data
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('PS4_games')
 
@@ -52,6 +43,9 @@ def list_all():
     return records
 
 def update_new_game (game_name,img,price,date,link):
+    '''
+    add game data into new games table in dynamodb
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('New_game')
     first_char = game_name[0]
@@ -66,9 +60,11 @@ def update_new_game (game_name,img,price,date,link):
             'ps_link':link,
         }
     )
-    return
 
 def update_will_free_game (game_name,img,price,date,link):
+    '''
+        add game data into free games table in dynamodb
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Free_games')
     first_char = game_name[0]
@@ -83,9 +79,12 @@ def update_will_free_game (game_name,img,price,date,link):
             'ps_link':link,
         }
     )
-    return
+
 
 def update_will_release_game (game_name,img,price,date,link):
+    '''
+        add game data into upcoming games table in dynamodb
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Will_release_games')
     first_char = game_name[0]
@@ -104,6 +103,10 @@ def update_will_release_game (game_name,img,price,date,link):
 
 
 def list_all_new_games():
+    '''
+    list all games stored in new game
+    :return: list contains games data
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('New_game')
 
@@ -117,6 +120,10 @@ def list_all_new_games():
     return records
 
 def list_all_free_games():
+    '''
+    list all games stored in free game
+    :return: list contains games data
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Free_games')
 
@@ -129,6 +136,10 @@ def list_all_free_games():
     return records
 
 def list_all_will_release_games():
+    '''
+    list all games stored in will release game
+    :return: list contains games data
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Will_release_games')
 
@@ -142,6 +153,11 @@ def list_all_will_release_games():
     return records
 
 def list_search_results(search_txt):
+    '''
+    search games in the dynamodb
+    :param search_txt: user input
+    :return: list of searched games
+    '''
     table_name ='PS4_games'
 
     response = search_name(search_txt,table_name)
@@ -153,6 +169,9 @@ def list_search_results(search_txt):
     return records
 
 def delete_all_new():
+    '''
+    delete games in new game table
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('New_game')
 
@@ -168,6 +187,9 @@ def delete_all_new():
         )
 
 def delete_all_free():
+    '''
+    delete games in free game table
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Free_games')
 
@@ -184,6 +206,9 @@ def delete_all_free():
 
 
 def delete_all_will():
+    '''
+    delete games in upcoming game table
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Will_release_games')
 
@@ -199,6 +224,12 @@ def delete_all_will():
         )
 
 def search_name(text_search,table_name):
+    '''
+    search game in the dynamodb
+    :param text_search: user input
+    :param table_name: search table
+    :return:
+    '''
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(table_name)
 
@@ -210,6 +241,12 @@ def search_name(text_search,table_name):
     return response
 
 def fuzzy_search(text_search,type='Name'):
+    '''
+    search games with name likely to user input
+    :param text_search: user input
+    :param type: search name of game
+    :return:
+    '''
     dynamodb = boto3.resource('dynamodb')
     table_name = 'PS4_games'
     table = dynamodb.Table(table_name)
@@ -234,7 +271,11 @@ def fuzzy_search(text_search,type='Name'):
     return records
 
 def image_detect(file_key):
-
+    '''
+    call aws rekognition to create image's tag
+    :param file_key: key value in S3
+    :return: tag of the img
+    '''
     rekognition = boto3.client("rekognition")
     response = rekognition.detect_labels(
         Image={
@@ -258,7 +299,11 @@ def image_detect(file_key):
 
 
 def text_detect(file_key):
-
+    '''
+    detect text in the image by using aes rekognition
+    :param file_key: key value in S3
+    :return: text in the img
+    '''
     rekognition = boto3.client("rekognition")
     response = rekognition.detect_text(
         Image={
@@ -283,6 +328,9 @@ def text_detect(file_key):
 
 
 def database_add_label():
+    '''
+    add detected tag of img into dynamodb
+    '''
     dynamodb = boto3.resource('dynamodb')
     table_name = 'PS4_games'
     table = dynamodb.Table(table_name)
@@ -307,6 +355,9 @@ def database_add_label():
     return
 
 def database_add_text():
+    '''
+    add detected text into dynamodb
+    '''
     dynamodb = boto3.resource('dynamodb')
     table_name = 'PS4_games'
     table = dynamodb.Table(table_name)
@@ -332,6 +383,11 @@ def database_add_text():
 
     return
 def image_text_search(text_search):
+    '''
+    search games by text in it
+    :param text_search: text in image
+    :return: list of search result
+    '''
     dynamodb = boto3.resource('dynamodb')
     table_name = 'PS4_games'
     table = dynamodb.Table(table_name)
@@ -355,6 +411,11 @@ def image_text_search(text_search):
     return records
 
 def search_genre(tmp_key):
+    '''
+    search game by genre of upload image
+    :param tmp_key: key of upload image
+    :return: list of search result
+    '''
     genre_txt = image_detect(tmp_key)
     records = []
     thelist = genre_txt.split()

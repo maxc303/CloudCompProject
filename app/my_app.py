@@ -13,20 +13,21 @@ webapp.permanent_session_lifetime = timedelta(days=1)
 
 def allowed_file(filename):
     """
+    check file
     :param filename: input file name
     :return: allowed extension
     """
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@webapp.route('/welcome', methods=['GET', 'POST'])
-def welcome():
-    return render_template('welcome.html')
-
 
 
 @webapp.route('/', methods=['GET'])
 def main():
+    '''
+    Main page of this web app, display products basic data
+    :return:  product data to the html template
+    '''
     new_games = u.list_all_new_games()
     will_release_games = u.list_all_will_release_games()
     free_games = u.list_all_free_games()
@@ -34,6 +35,11 @@ def main():
 
 @webapp.route('/search', methods=['GET', 'POST'])
 def search():
+    '''
+    show search result in the page. First, check whether user input text or
+    upload image, and use different method to search.
+    :return: search result back to the html template
+    '''
     file = request.files['file']
     if file.filename != '':
         if file and allowed_file(file.filename):
