@@ -1,3 +1,4 @@
+#collect all games information and stored in dynamodb
 import requests
 from bs4 import BeautifulSoup
 import lxml

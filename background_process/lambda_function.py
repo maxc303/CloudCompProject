@@ -100,6 +100,8 @@ def delete_all_will():
 
         )
 
+#main function of the background process
+
 def lambda_handler(event, context):
     delete_all_new()
     url = 'https://psdeals.net/ca-store/collection/new_games?platforms=ps4'

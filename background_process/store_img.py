@@ -1,3 +1,4 @@
+#store images into S3 used for detection
 import requests
 
 import app.utils as u
